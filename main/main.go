@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-	text := ",the best of times (cap) , it was ... the worst  64 (hex) (bin)  of  éimes (cap, 2)  it was tHe AGe of wiSdOm (cap, 2) ,"
+	text := "::the best of times (cap) , it was .:! the wo..rst  64 (hex) (bin)  of  éimes (cap, 688887)  it was tHe AGe of wiSdOm (cap, 2) .."
 
 	fmt.Println(text)
 
@@ -22,6 +22,10 @@ func main() {
 	fmt.Println(slice)
 
 	finalslice := GoReloaded(slice)
+	
+	
+
+	
 
 	fmt.Println(finalslice)
 
@@ -153,18 +157,21 @@ func GoReloaded(slice []string) string {
 			slice[i] = ""
 			slice = CleanSlice(slice)
 			i--
-		}else if i != 0 && slice[i][0] == ',' || slice[i][0] == '.' || slice[i][0] == ';' || slice[i][0] == ':' || slice[i][0] == '!' || slice[i][0] == '?' {
-			slice[i-1] += string(slice[i][0])
-			slice[i] = slice[i][1:]
-		} else if goreloaded.IsPunctuatuion(slice[i]) {
+		}
+		
+		 if goreloaded.IsPunctuatuion(slice[i]) {
 			slice[i-1] += slice[i]
 			slice[i] = ""
 			slice = CleanSlice(slice)
 			i--
-			fmt.Println("hello")
 		}
 
     }
+
+	fmt.Println(slice[0])
+	
+	
+	
 
 	return goreloaded.SliceToString(slice)
 }

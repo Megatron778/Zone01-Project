@@ -1,7 +1,5 @@
 package goreloaded
 
-import "fmt"
-
 func IsPunctuatuion(s string) bool {
 	result := true
 
@@ -12,6 +10,5 @@ func IsPunctuatuion(s string) bool {
 			result = false
 		}
 	}
-	fmt.Println(result)
 	return result
 }

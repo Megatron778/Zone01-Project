@@ -1,8 +1,6 @@
 package goreloaded
 
 func StringToSlice(strclean string) []string {
-
-	strclean += " "
 	count := 0
 	slice := []string{}
 

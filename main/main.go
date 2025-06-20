@@ -9,35 +9,24 @@ import (
 
 func main() {
 
-	text := "::the best of times (cap) , it was .:! the wo..rst  64 (hex) (bin)  of  éimes (cap, 688887)  it was tHe AGe of wiSdOm (cap, 2) .."
+	text := "(cap, 5) best of times 'élHo (cap) , it was .:! the wo..rst  hj4 (hex) (bin)  of  éimes hello world' (cap, 3) it was ,tHe AGe of wiSdOm (cap, 2) .."
 
 	fmt.Println(text)
-
+	text = goreloaded.Punctuatuion(text)
 	strclean := goreloaded.CleanStr(text)
-
-	
-
-	slice := (goreloaded.StringToSlice(strclean))
+    slice := (goreloaded.StringToSlice(strclean))
 
 	fmt.Println(slice)
 
 	finalslice := GoReloaded(slice)
-	
-	
-
-	
 
 	fmt.Println(finalslice)
-
-	
-
  
 }
 
 func CleanSlice(slice []string) []string {
 
 	sliceclean := []string{}
-
 	for i := 0; i < len(slice); i++ {
 		if slice[i] != "" {
 			sliceclean = append(sliceclean, slice[i])
@@ -55,13 +44,12 @@ func GoReloaded(slice []string) string {
 		if slice[0] == "(up)" || slice[0] == "(low)" || slice[0] == "(cap)" || slice[0] == "(hex)" || slice[0] == "(bin)" {
 			slice[0] = ""
 			slice = CleanSlice(slice)
-			i--
 		} else if (slice[0] == "(up," || slice[0] == "(low," || slice[0] == "(cap,") {
 			slice[0] = ""
 			slice[1] = ""
 			slice = CleanSlice(slice)
-			i--
 		}
+
 
 		if i != 0 && slice[i] == "(up)" {
 			slice[i-1] = strings.ToUpper(slice[i-1])
@@ -159,12 +147,7 @@ func GoReloaded(slice []string) string {
 			i--
 		}
 		
-		 if goreloaded.IsPunctuatuion(slice[i]) {
-			slice[i-1] += slice[i]
-			slice[i] = ""
-			slice = CleanSlice(slice)
-			i--
-		}
+		
 
     }
 

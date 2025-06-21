@@ -1,14 +1,11 @@
 package goreloaded
 
-func IsPunctuatuion(s string) bool {
-	result := true
+func IsPunctuation(r rune) bool {
+	flag := false
 
-	for i := 0; i < len(s); i++ {
-		if s[i] == ',' || s[i] == '.' || s[i] == ';' || s[i] == ':'|| s[i] == '!' || s[i] == '?' {
-			continue
-		} else {
-			result = false
-		}
+	if r == '.' || r == ',' || r == '!' || r == ':' || r == ';' || r == '?' {
+		flag = true
 	}
-	return result
+
+	return flag
 }

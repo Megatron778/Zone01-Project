@@ -9,14 +9,12 @@ import (
 )
 
 func main() {
-	text1 := "..(cap,5)!:;   .h!:;"
-
-	text1 = strings.ToLower(text1)
+	text1 := " an ' an . an ' an (cap,2) "
 
 	fmt.Println(text1)
 
 	text2 := goreloaded.CleanStr(SolvePunc(text1))
-	text3 := CleanPunc(goreloaded.StringToSlice(text2))
+	text3 := CleanPunc(goreloaded.StringToSlice(text2), false)
 	fmt.Println(text3)
 	text4 := GoReloaded(text3)
 	fmt.Println(text4)
@@ -32,9 +30,31 @@ func CleanSlice(slice []string) []string {
 	return sliceclean
 }
 
-func CleanPunc(slice []string) []string {
+func CleanPunc(slice []string, flag bool) []string {
+	count := 0
 	for i := 0; i < len(slice); i++ {
-		if i != 0 && goreloaded.IsPunctuation(rune(slice[i][0])) && slice[i-1][len(slice[i-1])-1] != ')' {
+		if (slice[i][0] == '\'' || slice[i][len(slice[i])-1] == '\'') && slice[i] != "'" && flag {
+			count++
+		}
+		if i != len(slice)-1 && slice[i] == "'" && count%2 == 0 && slice[i+1][0] != '(' {
+			if slice[i+1] == "'" {
+				count++
+			}
+			slice[i+1] = slice[i] + slice[i+1]
+			slice[i] = ""
+			slice = CleanSlice(slice)
+			i--
+			count++
+		} else if i != 0 && slice[i] == "'" && count%2 != 0 && slice[i-1][len(slice[i-1])-1] != ')' {
+			if slice[i-1] == "'" {
+				count++
+			}
+			slice[i-1] += slice[i]
+			slice[i] = ""
+			slice = CleanSlice(slice)
+			i--
+			count++
+		} else if i != 0 && goreloaded.IsPunctuation(rune(slice[i][0])) && slice[i-1][len(slice[i-1])-1] != ')' {
 			slice[i-1] += slice[i]
 			slice[i] = ""
 			slice = CleanSlice(slice)
@@ -59,10 +79,20 @@ func SolvePunc(st string) string {
 			} else {
 				str += string(s[i])
 			}
+		} else if i != 0 && s[i] == '(' && goreloaded.IsPunctuation(s[i-1]) {
+			str += " " + string(s[i])
+		} else if i != len(s)-1 && s[i] == ')' && goreloaded.IsPunctuation(s[i+1]) {
+			str += string(s[i]) + " "
+		} else if i != 0 && i != len(s)-1 && (s[i] == '\'' && ((goreloaded.IsPunctuation(s[i-1]) || goreloaded.IsPunctuation(s[i+1]) || s[i-1] == ' ' ||
+			s[i+1] == ' ') || s[i+1] == '\'' || s[i-1] == '\'')) {
+			str += " " + string(s[i]) + " "
+		} else if s[i] == '\'' && (i == 0 || i == len(s)-1) {
+			str += " " + string(s[i]) + " "
 		} else {
 			str += string(s[i])
 		}
 	}
+	fmt.Println(str)
 	return str
 }
 
@@ -120,9 +150,14 @@ func GoReloaded(slice []string) []string {
 
 		} else if i != 0 && i < len(slice)-1 && slice[i] == "(up," {
 			number, _ = strconv.Atoi(slice[i+1][:len(slice[i+1])-1])
+			if number < 0 {
+				number = 0
+			}
 			for j := 1; j <= number; j++ {
 				if i-j >= 0 {
 					slice[i-j] = strings.ToUpper(slice[i-j])
+				} else {
+					break
 				}
 			}
 			slice[i] = ""
@@ -131,9 +166,14 @@ func GoReloaded(slice []string) []string {
 			i--
 		} else if i != 0 && i < len(slice)-1 && slice[i] == "(low," {
 			number, _ = strconv.Atoi(slice[i+1][:len(slice[i+1])-1])
+			if number < 0 {
+				number = 0
+			}
 			for j := 1; j <= number; j++ {
 				if i-j >= 0 {
 					slice[i-j] = strings.ToLower(slice[i-j])
+				} else {
+					break
 				}
 			}
 			slice[i] = ""
@@ -142,9 +182,14 @@ func GoReloaded(slice []string) []string {
 			i--
 		} else if i != 0 && i < len(slice)-1 && slice[i] == "(cap," {
 			number, _ = strconv.Atoi(slice[i+1][:len(slice[i+1])-1])
+			if number < 0 {
+				number = 0
+			}
 			for j := 1; j <= number; j++ {
 				if i-j >= 0 {
 					slice[i-j] = goreloaded.Capitalize(slice[i-j])
+				} else {
+					break
 				}
 			}
 			slice[i] = ""
@@ -152,5 +197,17 @@ func GoReloaded(slice []string) []string {
 			slice = CleanSlice(slice)
 			i--
 		}
+
 	}
+
+	for i := 0; i < len(slice); i++ {
+		if i != len(slice)-1 && (slice[i] == "a" || slice[i] == "A") {
+			if goreloaded.IsAn(slice[i+1]) {
+				slice[i] += "n"
+			}
+		}
+		
+	}
+	slice = CleanPunc(slice, true)
+	return slice
 }

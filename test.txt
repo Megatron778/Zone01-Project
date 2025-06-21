@@ -1,5 +1,30 @@
-(up) hello
-(up, 5)
+input1 : (up, 4) Seems' pretty straightforward 'to me . Why do you wan't to chan...ge 'it !?
+output1 : Seems 'pretty straightforward' to me. Why do you wan't to chan... ge 'it!?
+
+input2 : server's' main rack 'is' 64 (hex) (bin)' degrees .
+output2 : server's 'main rack' is '4' degrees.
+
+input3 : '   '  '   '  '  '  '' ''
+output3 : '' '' '' '' ''
+
+input4 : ...hello...world (cap, 5) .
+output4 : ... Hello... Wolrd.... 
+
+input5 : ... hello... there...general... kenobi...(cap, 4)
+output5 : ... Hello... There... General... Kenobi...
+
+input6 : 77cET (cap)
+output6 : 77Cet
+
+input6 : The sequence gets (up) treated as a' escape ' 
+output6 : The sequence gets treated as ( an or a ) 'escape'  ?
+
+//
+
+input7 :  ''''''''''
+output7 :  '' '' '' '' ''
 
 
-strings.title
+
+
+a ehrj (up, 2)

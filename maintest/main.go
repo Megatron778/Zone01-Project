@@ -128,7 +128,9 @@ func GoReloaded(slice []string) []string {
 		if slice[0] == "(up)" || slice[0] == "(low)" || slice[0] == "(cap)" || slice[0] == "(hex)" || slice[0] == "(bin)" {
 			slice[0] = ""
 			slice = goreloaded.CleanSlice(slice)
-		} else if len(slice) > 1 && slice[0] == "(up," || slice[0] == "(low," || slice[0] == "(cap," && slice[1][len(slice[1])-1] == ')' {
+		} else if len(slice) > 1 && slice[0] == "(up," || slice[0] == "(low," || slice[0] == "(cap," && goreloaded.CheckNumber(slice[1][:len(slice[1])-1]) && slice[1][len(slice[1])-1] == ')' {
+			fmt.Println(goreloaded.CheckNumber(slice[1][:len(slice[1])-1]))
+			fmt.Println(slice[1][:len(slice[1])-1])
 			slice[0] = ""
 			slice[1] = ""
 			slice = goreloaded.CleanSlice(slice)
@@ -154,6 +156,9 @@ func GoReloaded(slice []string) []string {
 
 			if err != nil {
 				fmt.Printf("Error converting '%s': %v\n", slice[i-1], err)
+				slice[i] = ""
+				slice = goreloaded.CleanSlice(slice)
+				i--
 			} else {
 				slice[i-1] = strconv.Itoa(int(num))
 				slice[i] = ""
@@ -165,6 +170,9 @@ func GoReloaded(slice []string) []string {
 
 			if err != nil {
 				fmt.Printf("Error converting '%s': %v\n", slice[i-1], err)
+				slice[i] = ""
+				slice = goreloaded.CleanSlice(slice)
+				i--
 			} else {
 				slice[i-1] = strconv.Itoa(int(num))
 				slice[i] = ""

@@ -1,1 +1,2 @@
-'hello'ghkhg  ' don't ''gfd' y
+input : up '(up,         5)' ''h'''e''l''''lo'''''
+output : UP '' '' h '' 'e' 'l' '' 'lo' '' ''

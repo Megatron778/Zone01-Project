@@ -22,12 +22,25 @@ func main() {
 		fmt.Println("error", err)
 	}
 
-	text2 := goreloaded.CleanStr(SolvePunc(string(text)))
-	fmt.Println(text2)
-	text3 := CleanPunc(goreloaded.StringToSlice(text2), false)
-	text4 := goreloaded.SliceToString(GoReloaded(text3))
+	lines := strings.Split(string(text), "\n")
 
-	err = os.WriteFile(filename[2], []byte(text4), 0o644)
+	textf := ""
+
+	for _, line := range lines {
+		text2 := line + "\n"
+	
+
+	
+
+	text3 := goreloaded.CleanStr(SolvePunc(string(text2)))
+	fmt.Println(text3)
+	text4 := CleanPunc(goreloaded.StringToSlice(text3), false)
+	text5 := goreloaded.SliceToString(GoReloaded(text4))
+	textf += text5 + "\n"
+	}
+	
+	
+	err = os.WriteFile(filename[2], []byte(textf), 0o644)
 	if err != nil {
 		fmt.Println("invalid input")
 		return
@@ -37,6 +50,7 @@ func main() {
 func CleanPunc(slice []string, flag bool) []string {
 	count := 0
 	for i := 0; i < len(slice); i++ {
+
 		if len(slice[i]) != 0 && slice[i] != "'" && flag {
 
 			if slice[i][0] == '\'' {

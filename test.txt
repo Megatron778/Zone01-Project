@@ -24,6 +24,9 @@ output6 : The sequence gets treated as ( an or a ) 'escape'  ?
 input7 :  ''''''''''
 output7 :  '' '' '' '' ''
 
+input8 : facebook.com 4,17 hello ...boy
+output8 : facebook.com 4,17 hello... boy
+
 
 
 

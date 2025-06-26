@@ -1,5 +1,7 @@
 package goreloaded
 
+import "fmt"
+
 func ValidFlag(s []string) bool {
 	flag := false
 	for i := 0 ; i < len(s) ; i++ {
@@ -11,5 +13,27 @@ func ValidFlag(s []string) bool {
 			
 		}
 	}
+	return flag
+}
+
+func ValidFlag2(s string) bool {
+
+	flag := false
+	if s == "(up)" || s == "(low)" || s == "(cap)" || s == "(hex)" || s == "(bin)" {
+			flag = true
+		}
+	fmt.Println(flag)
+	return flag
+}
+
+func ValidFlag3(s, s2 string) bool {
+
+	flag := false
+	
+		if ( s == "(up," || s == "(low," || s == "(cap,") && CheckNumber(s2[:len(s2)-1]) && s2[len(s2)-1] == ')' {
+			flag = true
+		}
+		fmt.Println(flag, "hh")
+	
 	return flag
 }

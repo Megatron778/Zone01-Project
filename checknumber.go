@@ -1,18 +1,15 @@
 package goreloaded
 
+import ("fmt" 
+ "strconv")
+
 func CheckNumber(nb string) bool {
-	flag := true
+	_, err := strconv.Atoi(nb)
 
-	star := 0
-
-	if nb[0] == '-' || nb[0] == '+' {
-		star = 1
+			if err != nil {
+				fmt.Println("Input Invalid : ", err)
+				return false
+			} else {
+				return true
 	}
-
-	for i := star ; i < len(nb); i++ {
-		if nb[i] < '0' || nb[i] > '9' {
-			flag = false
-		}
-	}
-	return flag
 }

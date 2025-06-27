@@ -1,1 +1,2 @@
-' (cap) ''' fd.h '(cap)'' fds.h.fsh.
+a a a a z 'a' 'an' '(CAp, (low) 5)'
+ 

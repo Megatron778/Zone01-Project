@@ -1,21 +1,10 @@
 package goreloaded
 
-import (
-	"unicode"
-)
-
 func IsVowels(s string) bool {
 	flag := false
-	count := 0
-	for i := 0; i < len(s); i++ {
-		if unicode.IsLetter(rune(s[i])) {
-			count++
-
-			if (s[i] == 'a' || s[i] == 'e' || s[i] == 'u' || s[i] == 'i' || s[i] == 'o' || s[i] == 'h' || s[i] == 'A' || s[i] == 'E' ||
-				s[i] == 'U' || s[i] == 'I' || s[i] == 'O' || s[i] == 'H') && count == 1 {
+			if (s[0] == 'a' || s[0] == 'e' || s[0] == 'u' || s[0] == 'i' || s[0] == 'o' || s[0] == 'h' || s[0] == 'A' || s[0] == 'E' ||
+				s[0] == 'U' || s[0] == 'I' || s[0] == 'O' || s[0] == 'H') {
 				flag = true
-			}
-		}
 	}
 
 	return flag

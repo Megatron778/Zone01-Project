@@ -1,11 +1,10 @@
 package main
 
 import (
+	goreloaded "cohort/functions"
 	"fmt"
 	"os"
 	"strings"
-
-	goreloaded "cohort"
 )
 
 func main() {

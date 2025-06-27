@@ -1,14 +1,17 @@
 package goreloaded
 
-import (
- "strconv")
-
 func CheckNumber(nb string) bool {
-	_, err := strconv.Atoi(nb)
-
-			if err == nil {
-				return true
-			} else {
-				return false
+	if len(nb) < 1 {
+		return false
 	}
+	star := 0
+	if nb[0] == '-' && len(nb) > 1 {
+		star = 1
+	}
+	for i := star; i < len(nb); i++ {
+		if nb[i] < '0' || nb[i] > '9' {
+			return false
+		}
+	}
+	return true
 }

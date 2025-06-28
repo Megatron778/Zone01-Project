@@ -1,10 +1,11 @@
 package main
 
 import (
-	goreloaded "cohort/functions"
 	"fmt"
 	"os"
 	"strings"
+
+	goreloaded "cohort/functions"
 )
 
 func main() {
@@ -21,24 +22,25 @@ func main() {
 	}
 
 	lines := strings.Split(string(text), "\n")
-
-	textf := ""
+	textfinal := ""
 
 	for _, line := range lines {
 		text2 := line + "\n"
 
-		text3 := goreloaded.CleanStr(goreloaded.SolvePunc(string(text2)))
-		text4 := goreloaded.CleanPunc(goreloaded.StringToSlice(text3))
-		for goreloaded.ValidFlag(text4) || goreloaded.ValidA(text4) {
-			text4 = goreloaded.CleanPunc(goreloaded.GoReloaded(text4))
+		tret1 := goreloaded.SolvePunc(string(text2))
+		tret2 := goreloaded.CleanStr(tret1)
+		tret3 := goreloaded.StringToSlice(tret2)
+		tret4 := goreloaded.CleanPunc(tret3)
+		for goreloaded.ValidFlag(tret4) || goreloaded.ValidA(tret4) {
+			tret4 = goreloaded.CleanPunc(goreloaded.GoReloaded(tret4))
 		}
-		texta := goreloaded.CleanCout(text4, false)
+		tretfinal := goreloaded.CleanCout(tret4, false)
 
-		text5 := goreloaded.SliceToString(texta)
-		textf += text5 + "\n"
+		text3 := goreloaded.SliceToString(tretfinal)
+		textfinal += text3 + "\n"
 	}
 
-	err = os.WriteFile(filename[2], []byte(textf), 0o644)
+	err = os.WriteFile(filename[2], []byte(textfinal), 0o644)
 	if err != nil {
 		fmt.Println("invalid input")
 		return

@@ -24,8 +24,8 @@ func main() {
 	lines := strings.Split(string(text), "\n")
 	textfinal := ""
 
-	for _, line := range lines {
-		text2 := line + "\n"
+	for i := 0 ; i < len(lines) ; i++ {
+		text2 := lines[i] + "\n"
 
 		tret1 := goreloaded.SolvePunc(string(text2))
 		tret2 := goreloaded.CleanStr(tret1)
@@ -37,7 +37,12 @@ func main() {
 		tretfinal := goreloaded.CleanCout(tret4, false)
 
 		text3 := goreloaded.SliceToString(tretfinal)
-		textfinal += text3 + "\n"
+		if i == len(lines)-1 {
+			textfinal += text3[:len(text3)-1]
+		}else {
+			textfinal += text3[:len(text3)-1] + "\n"
+		}
+		
 	}
 
 	err = os.WriteFile(filename[2], []byte(textfinal), 0o644)

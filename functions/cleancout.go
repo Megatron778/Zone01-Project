@@ -1,7 +1,5 @@
 package goreloaded
 
-import "fmt"
-
 
 func CleanCout(slice []string, flag bool) []string {
 	count := 0
@@ -13,7 +11,6 @@ func CleanCout(slice []string, flag bool) []string {
 			coutnb++
 		} 
 	}
-	fmt.Println(coutnb)
 
 	if coutnb%2 == 0 {
 		coutnb = -1

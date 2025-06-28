@@ -35,7 +35,7 @@ func ValidFlag3(s, s2 string) bool {
 func ValidA(s []string) bool {
 	flag := false
 	for i := 0; i < len(s); i++ {
-		if i < len(s)-1 && (s[i] == "a" || s[i] == "A" || s[i] == "a" || s[i] == "A") && IsVowels(s[i+1]) {
+		if i < len(s)-1 && (s[i] == "a" || s[i] == "A") && IsVowels(s[i+1]) {
 			flag = true
 		}
 	}

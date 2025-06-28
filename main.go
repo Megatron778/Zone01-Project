@@ -42,7 +42,7 @@ func main() {
 		}else {
 			textfinal += text3[:len(text3)-1] + "\n"
 		}
-		
+			
 	}
 
 	err = os.WriteFile(filename[2], []byte(textfinal), 0o644)

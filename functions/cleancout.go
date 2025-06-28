@@ -1,8 +1,23 @@
 package goreloaded
 
+import "fmt"
+
 
 func CleanCout(slice []string, flag bool) []string {
 	count := 0
+
+	coutnb := 0
+
+	for i := 0; i < len(slice); i++ {
+		if slice[i] == "'" {
+			coutnb++
+		} 
+	}
+	fmt.Println(coutnb)
+
+	if coutnb%2 == 0 {
+		coutnb = -1
+	}
 	for i := 0; i < len(slice); i++ {
 
 		if len(slice[i]) != 0 && slice[i] != "'" && flag {
@@ -18,7 +33,7 @@ func CleanCout(slice []string, flag bool) []string {
 		}
 
 
-	    if i != len(slice)-1 && slice[i] == "'" && count%2 == 0 && !ValidFlag2(slice[i+1]) {
+	    if i != len(slice)-1 && slice[i] == "'" && count%2 == 0 && !ValidFlag2(slice[i+1]) && count+1 != coutnb {
 			if slice[i+1] == "'" {
 				count++
 			}
@@ -27,7 +42,7 @@ func CleanCout(slice []string, flag bool) []string {
 			slice = CleanSlice(slice)
 			i--
 			count++
-		} else if i != 0 && slice[i] == "'" && count%2 != 0 && !ValidFlag2(slice[i-1]) {
+		} else if i != 0 && slice[i] == "'" && count%2 != 0 && !ValidFlag2(slice[i-1]) && count+1 != coutnb {
 			if slice[i-1] == "'" {
 				count++
 			}
@@ -37,7 +52,7 @@ func CleanCout(slice []string, flag bool) []string {
 			i--
 			count++
 			
-		 } else if i < len(slice)-2 && slice[i] == "'" && count%2 == 0 && !ValidFlag2(slice[i+1]) && !ValidFlag3(slice[i+1], slice[i+2]) {
+		 } else if i < len(slice)-2 && slice[i] == "'" && count%2 == 0 && !ValidFlag2(slice[i+1]) && !ValidFlag3(slice[i+1], slice[i+2]) && count+1 != coutnb {
 			if slice[i+1] == "'" {
 		 		count++
 		 	}
@@ -46,7 +61,7 @@ func CleanCout(slice []string, flag bool) []string {
 		 	slice = CleanSlice(slice)
 		 	i--
 		 	count++
-		 }else if i > 1 && i < len(slice)-1 && slice[i] == "'" && count%2 == 0 && !ValidFlag2(slice[i-1]) && !ValidFlag3(slice[i-2], slice[i-1]) {
+		 }else if i > 1 && i < len(slice)-1 && slice[i] == "'" && count%2 == 0 && !ValidFlag2(slice[i-1]) && !ValidFlag3(slice[i-2], slice[i-1]) && count+1 != coutnb {
 			if slice[i+1] == "'" {
 		 		count++
 		 	}

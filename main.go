@@ -32,7 +32,7 @@ func main() {
 		tret3 := goreloaded.StringToSlice(tret2)
 		tret4 := goreloaded.CleanPunc(tret3)
 		for goreloaded.ValidFlag(tret4) || goreloaded.ValidA(tret4) {
-			tret4 = goreloaded.CleanPunc(goreloaded.GoReloaded(tret4))
+			tret4 = goreloaded.CleanPunc(goreloaded.ApplyFlag(tret4))
 		}
 		tretfinal := goreloaded.CleanCout(tret4, false)
 
@@ -42,7 +42,7 @@ func main() {
 		}else {
 			textfinal += text3[:len(text3)-1] + "\n"
 		}
-			
+
 	}
 
 	err = os.WriteFile(filename[2], []byte(textfinal), 0o644)

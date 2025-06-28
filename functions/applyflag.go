@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GoReloaded(slice []string) []string {
+func ApplyFlag(slice []string) []string {
 	number := 0
 	for i := 0; i < len(slice); i++ {
 		if slice[0] == "(up)" || slice[0] == "(low)" || slice[0] == "(cap)" || slice[0] == "(hex)" || slice[0] == "(bin)" {

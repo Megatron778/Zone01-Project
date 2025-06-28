@@ -8,7 +8,7 @@ func SolvePunc(st string) string {
 	coutnb := 0
 	count := 0
 
-	for i := 0; i < len(st); i++ {
+	for i := 0; i < len(s); i++ {
 		if i != 0 && i != len(s)-1 && (s[i] == '\'' && ((IsPunctuation(s[i-1]) || IsPunctuation(s[i+1]) || s[i-1] == ' ' ||
 			s[i+1] == ' ') || s[i+1] == '\'' || s[i-1] == '\'' || s[i-1] == '(' || s[i-1] == ')' )) {
 			coutnb++

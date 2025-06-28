@@ -38,9 +38,13 @@ func main() {
 
 		text3 := goreloaded.SliceToString(tretfinal)
 		if i == len(lines)-1 {
-			textfinal += text3[:len(text3)-1]
+			textfinal += text3
 		}else {
-			textfinal += text3[:len(text3)-1] + "\n"
+			if (len(text3) > 0) {
+				textfinal += text3[:len(text3)-1] + "\n"
+			} else {
+				textfinal += text3 + "\n"
+			}
 		}
 
 	}

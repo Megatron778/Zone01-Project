@@ -9,15 +9,13 @@ import (
 func ApplyFlag(slice []string) []string {
 	number := 0
 	for i := 0; i < len(slice); i++ {
-		if slice[0] == "(up)" || slice[0] == "(low)" || slice[0] == "(cap)" || slice[0] == "(hex)" || slice[0] == "(bin)" {
+		if (slice[0] == "(up)" || slice[0] == "(low)" || slice[0] == "(cap)" || slice[0] == "(hex)" || slice[0] == "(bin)") {
 			slice[0] = ""
 			slice = CleanSlice(slice)
-			i--
 		} else if len(slice) > 1 && (slice[0] == "(up," || slice[0] == "(low," || slice[0] == "(cap,") && CheckNumber(slice[1][:len(slice[1])-1]) && slice[1][len(slice[1])-1] == ')' {
 			slice[0] = ""
 			slice[1] = ""
 			slice = CleanSlice(slice)
-			i--
 		} else if i != 0 && slice[i] == "(up)" {
 			number = 1
 			for j := 1; j <= number; j++ {
@@ -171,9 +169,9 @@ func ApplyFlag(slice []string) []string {
 				slice = CleanSlice(slice)
 				i--
 			}
-
 		}
 	}
+	 
 
 	for i := 0; i < len(slice); i++ {
 		if i != len(slice)-1 && (slice[i] == "a" || slice[i] == "A" || slice[i] == "'a" || slice[i] == "'A") {

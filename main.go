@@ -11,7 +11,14 @@ import (
 func main() {
 	filename := os.Args
 
-	if len(filename) != 3 || filename[2][len(filename[2])-4:len(filename[2])] != ".txt" {
+	if len(filename) != 3  {
+		fmt.Println("invalid input")
+		return
+	}
+	input := filename[1]
+	output := filename[2]
+
+	if !strings.HasSuffix(input, ".txt") || !strings.HasSuffix(output, ".txt") {
 		fmt.Println("invalid input")
 		return
 	}

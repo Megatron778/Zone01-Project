@@ -174,7 +174,7 @@ func ApplyFlag(slice []string) []string {
 	 
 
 	for i := 0; i < len(slice); i++ {
-		if i != len(slice)-1 && (slice[i] == "a" || slice[i] == "A" || slice[i] == "'a" || slice[i] == "'A") {
+		if i != len(slice)-1 && (slice[i] == "a" || slice[i] == "A" ) {
 			if IsVowels(slice[i+1]) {
 				slice[i] += "n"
 			}

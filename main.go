@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	goreloaded "cohort/functions"
+	"cohort/functions"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	input := filename[1]
 	output := filename[2]
 
-	if !strings.HasSuffix(input, ".txt") || !strings.HasSuffix(output, ".txt") {
+	if (!strings.HasSuffix(input, ".txt") && !strings.HasSuffix(input, ".TXT")) || (!strings.HasSuffix(output, ".txt")   && !strings.HasSuffix(output, ".TXT")) {
 		fmt.Println("invalid input")
 		return
 	}
@@ -45,7 +45,11 @@ func main() {
 
 		text3 := goreloaded.SliceToString(tretfinal)
 		if i == len(lines)-1 {
-			textfinal += text3
+			if (len(text3) > 0) {
+				textfinal += text3[:len(text3)-1]
+			} else {
+				textfinal += text3 
+			}
 		}else {
 			if (len(text3) > 0) {
 				textfinal += text3[:len(text3)-1] + "\n"

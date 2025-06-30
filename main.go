@@ -29,7 +29,7 @@ func main() {
 	}
 
 	lines := strings.Split(string(text), "\n")
-	textfinal := ""
+	var textfinal string
 
 	for i := 0 ; i < len(lines) ; i++ {
 		text2 := lines[i] + "\n"

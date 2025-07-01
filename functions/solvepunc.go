@@ -1,8 +1,12 @@
 package goreloaded
 
+import "fmt"
+
 func SolvePunc(st string) string {
 
+	fmt.Println([]byte(st))
 	s := []rune(st)
+
 	str := ""
 
 	coutnb := 0
@@ -10,7 +14,7 @@ func SolvePunc(st string) string {
 
 	for i := 0; i < len(s); i++ {
 		if i != 0 && i != len(s)-1 && (s[i] == '\'' && ((IsPunctuation(s[i-1]) || IsPunctuation(s[i+1]) || s[i-1] == ' ' ||
-			s[i+1] == ' ') || s[i+1] == '\'' || s[i-1] == '\'' || s[i-1] == '(' || s[i-1] == ')' )) {
+			s[i+1] == ' ') || s[i+1] == '\'' || s[i-1] == '\'' || s[i-1] == '(' || s[i-1] == ')')) {
 			coutnb++
 		} else if s[i] == '\'' && (i == 0 || i == len(s)-2) {
 			coutnb++
@@ -37,7 +41,7 @@ func SolvePunc(st string) string {
 		} else if i != len(s)-1 && s[i] == ')' && IsPunctuation(s[i+1]) {
 			str += string(s[i]) + " "
 		} else if i != 0 && i != len(s)-1 && (s[i] == '\'' && ((IsPunctuation(s[i-1]) || IsPunctuation(s[i+1]) || s[i-1] == ' ' ||
-			s[i+1] == ' ') || s[i+1] == '\'' || s[i-1] == '\'' || s[i-1] == '(' || s[i-1] == ')' )) && count+1 != coutnb {
+			s[i+1] == ' ') || s[i+1] == '\'' || s[i-1] == '\'' || s[i-1] == '(' || s[i-1] == ')')) && count+1 != coutnb {
 			str += " " + string(s[i]) + " "
 			count++
 		} else if s[i] == '\'' && (i == 0 || i == len(s)-2) && count+1 != coutnb {

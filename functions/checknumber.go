@@ -5,7 +5,7 @@ func CheckNumber(nb string) bool {
 		return false
 	}
 	star := 0
-	if nb[0] == '-' && len(nb) > 1 {
+	if (nb[0] == '-' || nb[0] == '+' ) && len(nb) > 1 {
 		star = 1
 	}
 	for i := star; i < len(nb); i++ {

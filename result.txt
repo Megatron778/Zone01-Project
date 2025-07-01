@@ -1,1 +1,15 @@
-hello (Hello).
+(cap 5).
+.
+.
+(cap, 5k5).
+(hex, 5).
+.
+(cap, '5).
+(cap,, 5).
+.
+(helolo).
+
+.
+).
+up).
+
